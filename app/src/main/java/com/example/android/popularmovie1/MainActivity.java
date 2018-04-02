@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private MovieAdapter adapter;
     private byte outputArraysLength;
     boolean sortPopular; // Sort Mode. True = Popular movies, False = top rated movies
-    public List<Movie> movieList;
+    public ArrayList<Movie> movieList;
     TextView errorMessageTextView;
     ProgressBar mLoadingIndicator;
 
@@ -53,8 +55,36 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         adapter = new MovieAdapter(getBaseContext(), this);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
-        makeSearchQuery();
+
+        // avoid re loading the movie list from the internet on device rotate
+        if(savedInstanceState!=null){
+            movieList = savedInstanceState.getParcelableArrayList("MOVIE_LIST");
+            adapter.setMovieData(movieList);
+           // Log.d("sss2", String.valueOf(movieList.size()));
+            showPosterGrid();
+        }
+        else{
+            makeSearchQuery();
+        }
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("MOVIE_LIST", movieList);
+        //Log.i("sss", String.valueOf(movieList.size()));
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+//        outState.putParcelableArrayList("MOVIE_LIST", movieList);
+//        Log.i("sss", "ddsssss");
+//        Log.i("sss", String.valueOf(movieList.size()));
+    }
+
     // check if we are connected to a network
     public boolean isOnline() {
         ConnectivityManager cm =
@@ -150,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                 return;
             }
             // parsing the response.
-            movieList = new ArrayList<>();
+            movieList = new ArrayList<Movie>();
             outputArraysLength = 0;
 
             if(s!=null && !s.equals("")) {

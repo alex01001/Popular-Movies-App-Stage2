@@ -47,6 +47,7 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MyViewHolde
         Movie current = data.get(position);
         URL posterURL = NetworkTools.buildPosterUrl(current.getPosterPath());
         Picasso.with(context).load(posterURL.toString()).resize(185,277).centerCrop().into(holder.posterImg);
+//        Picasso.with(context).load(posterURL.toString()).fit().into(holder.posterImg);
 
         ViewGroup.LayoutParams lp;
         lp = holder.posterImg.getLayoutParams();
