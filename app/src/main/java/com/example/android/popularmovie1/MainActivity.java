@@ -3,6 +3,8 @@ package com.example.android.popularmovie1;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.drawable.GradientDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -54,8 +56,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         adapter = new MovieAdapter(getBaseContext(), this);
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
+        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 4));
 
+        }
+        else{
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
+
+        }
         // avoid re loading the movie list from the internet on device rotate
         if(savedInstanceState!=null){
             movieList = savedInstanceState.getParcelableArrayList("MOVIE_LIST");

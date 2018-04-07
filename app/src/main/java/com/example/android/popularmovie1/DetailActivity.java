@@ -42,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
             dvRating.setText(movie.getVoteCount().toString());
             URL posterURL = NetworkTools.buildPosterUrl(movie.getPosterPath());
             Picasso.with(getBaseContext()).load(posterURL.toString()).fit().into(dvThumbnail);
+
         }
 
 
