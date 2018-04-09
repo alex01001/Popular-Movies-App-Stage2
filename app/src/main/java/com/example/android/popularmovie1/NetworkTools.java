@@ -46,6 +46,23 @@ public class NetworkTools {
         return url;
     }
 
+    // builds full trailers request URL
+    public static URL buildTrailersUrl(String movieID) {
+        Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
+                .appendEncodedPath(movieID)
+                .appendEncodedPath("videos")
+                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
 
     /**
      * This method returns the entire result from the HTTP response.
