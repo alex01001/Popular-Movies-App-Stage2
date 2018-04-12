@@ -1,12 +1,18 @@
 package com.example.android.popularmovie1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,16 +32,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements TrailersAdapter.TrailerItemClickListener{
 
     private ImageView dvThumbnail;
     private TextView dvOriginalTitle;
     private TextView dvReleaseDate;
     private TextView dvRating;
     private TextView dvOverview;
-    private ListView mReview;
-    private ListView mTrailers;
-    private TrailersAdapter mTrailersAdapter;
+   // private ListView mReview;
+    //private ListView mTrailers;
+   // private TrailersAdapter mTrailersAdapter;
+
+    private RecyclerView mRecyclerView;
+    private TrailersAdapter adapter;
 
 
     @Override
@@ -72,26 +81,54 @@ public class DetailActivity extends AppCompatActivity {
             }
 
 //            ArrayList<Review> R_Initial;
-            ArrayList<Trailer> T_Initial ;
+            ArrayList<Trailer> trailersList;
 //            R_Initial= new ArrayList<>();
 //            mReviewAdapter = new ReviewAdapter(getActivity().getApplicationContext(),R.layout.list_item_review,R_Initial);
 //            mReview=(ListView) rootView.findViewById(R.id.RevList);
 //            mReview.setAdapter(mReviewAdapter);
 
-            T_Initial= new ArrayList<>();
-            mTrailersAdapter=new TrailersAdapter(getApplicationContext(),R.layout.trailer_item,T_Initial);
-            mTrailers=(ListView) findViewById(R.id.trailerList);
-            mTrailers.setAdapter(mTrailersAdapter);
+            mRecyclerView = (RecyclerView) findViewById(R.id.rv_trailersList);
 
-            mTrailers.setOnItemClickListener(new ListView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Trailer trailer = (Trailer) mTrailersAdapter.getItem(i);
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("http://www.youtube.com/watch?v=" + trailer.getKey()));
-                    startActivity(intent);
-                }
-            });
+            adapter = new TrailersAdapter(getBaseContext(), this);
+            mRecyclerView.setAdapter(adapter);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+//            if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+//                mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 4));
+//
+//            }
+//            else{
+//                mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
+//
+//            }
+            // avoid re loading the movie list from the internet on device rotate
+
+
+//            if(savedInstanceState!=null){
+//                movieList = savedInstanceState.getParcelableArrayList("MOVIE_LIST");
+//                adapter.setMovieData(movieList);
+//                // Log.d("sss2", String.valueOf(movieList.size()));
+//                showPosterGrid();
+//            }
+//            else{
+//                makeSearchQuery();
+//            }
+
+
+
+//            T_Initial= new ArrayList<>();
+//            mTrailersAdapter=new TrailersAdapter(getApplicationContext(),R.layout.trailer_item,T_Initial);
+//            mTrailers=(ListView) findViewById(R.id.trailerList);
+//            mTrailers.setAdapter(mTrailersAdapter);
+//
+//            mTrailers.setOnItemClickListener(new ListView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                    Trailer trailer = (Trailer) mTrailersAdapter.getItem(i);
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    intent.setData(Uri.parse("http://www.youtube.com/watch?v=" + trailer.getKey()));
+//                    startActivity(intent);
+//                }
+//            });
 
 
 
@@ -112,6 +149,32 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    // check if we are connected to a network
+//    public boolean isOnline() {
+//        ConnectivityManager cm =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+//        return netInfo != null && netInfo.isConnectedOrConnecting();
+//    }
+//    private void makeSearchQuery() {
+//
+//        if(isOnline()) {
+//            URL MovieUrl = NetworkTools.buildUrl(sortPopular);
+//            String searchResults = null;
+//            new MainActivity.MovieQueryTask().execute(MovieUrl);
+//        }else {
+//            showErrorMessage();
+//        }
+//    }
+
+    @Override
+    public void onTrailerItemClick(int clickedItemIndex) {
+
+        Trailer trailer = (Trailer) adapter.getItem(clickedItemIndex);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("http://www.youtube.com/watch?v=" + trailer.getKey()));
+        startActivity(intent);
+    }
 
     public class TrailerQueryTask extends AsyncTask<URL, Void, String> {
         @Override
@@ -140,8 +203,6 @@ public class DetailActivity extends AppCompatActivity {
             }
             // parsing the response.
 
-
-
             final String OMD_Results = "results";
             final String OMD_ID = "id";
             final String OMD_Name ="name";
@@ -162,7 +223,8 @@ public class DetailActivity extends AppCompatActivity {
                 e.printStackTrace();
                 return;
             }
-            Trailer[] resultStr = new Trailer[TrailerArray.length()];
+            //Trailer[] resultStr = new Trailer[TrailerArray.length()];
+            ArrayList<Trailer> resultStr = new ArrayList<Trailer>();
 
             for (int i = 0; i < TrailerArray.length(); i++) {
                 String id;
@@ -181,24 +243,31 @@ public class DetailActivity extends AppCompatActivity {
                         name = Trailers.getString(OMD_Name);
 //                        type = Trailers.getString(OMD_Type);
 
-                        resultStr[i] = new Trailer();
-                        resultStr[i].setId(id);
-                        resultStr[i].setKey(key);
-                        resultStr[i].setName(name);
+                        Trailer tr = new Trailer();
+                        tr.setId(id);
+                        tr.setKey(key);
+                        tr.setName(name);
+                        resultStr.add(tr);
+
+//                        resultStr[i] = new Trailer();
+//                        resultStr[i].setId(id);
+//                        resultStr[i].setKey(key);
+//                        resultStr[i].setName(name);
                     }
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            Log.i("scroon", String.valueOf(resultStr.length));
+            Log.i("scroon", String.valueOf(resultStr.size()));
 
             if (resultStr != null) {
 
-                mTrailersAdapter.clear();
-                for(Trailer MovieStr : resultStr) {
-                    mTrailersAdapter.add(MovieStr);
-                }
+                adapter.setMovieData(resultStr);
+//                mTrailersAdapter.clear();
+//                for(Trailer MovieStr : resultStr) {
+//                    mTrailersAdapter.add(MovieStr);
+//                }
 
             }
         }
