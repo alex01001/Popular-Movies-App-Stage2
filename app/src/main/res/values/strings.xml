@@ -2,5 +2,6 @@
     <string name="app_name">Movie App v.2</string>
     <string name="sortMostPopular">Most Popular Movies</string>
     <string name="sortTopRated">Top Rated Movies</string>
+    <string name="sortFavorites">Favorite Movies</string>
     <string name="errorMessage">Failed to load. Please, check your Internet connection and try again. </string>
 </resources>

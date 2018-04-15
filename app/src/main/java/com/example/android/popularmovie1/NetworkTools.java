@@ -15,10 +15,14 @@ public class NetworkTools {
     /**
      * Builds the URL
      */
-    public static URL buildUrl(boolean sortPopular) {
+    public static URL buildUrl(int sortPopular) {
+
+        if (sortPopular==2){
+            return null;
+        }
 
         Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
-                .appendPath(sortPopular ? Constants.POPULAR_MOVIES_URL:Constants.TOP_MOVIES_URL)
+                .appendPath(sortPopular==0 ? Constants.POPULAR_MOVIES_URL:Constants.TOP_MOVIES_URL)
                 .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
                 .build();
 
@@ -34,6 +38,23 @@ public class NetworkTools {
     public static URL buildPosterUrl(String posterPath) {
         Uri builtUri = Uri.parse(Constants.IMAGE_URL).buildUpon()
                 .appendEncodedPath(posterPath)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
+    // builds URL for individual movie
+    public static URL buildMovieUrl(String movieID) {
+        Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
+                .appendEncodedPath(movieID)
+                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
                 .build();
 
         URL url = null;

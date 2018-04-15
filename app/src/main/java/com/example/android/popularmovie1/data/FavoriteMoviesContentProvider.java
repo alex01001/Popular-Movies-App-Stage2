@@ -13,7 +13,7 @@ import android.support.annotation.NonNull;
 public class FavoriteMoviesContentProvider extends ContentProvider {
 
     public static final int FAVORITE_MOVIES = 100;
-    public static final int FAVORITE_MOVIES_WITH_ID = 100;
+    public static final int FAVORITE_MOVIES_WITH_ID = 101;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
@@ -57,8 +57,6 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
 
             default:
                 throw new UnsupportedOperationException("unknown uri: " + uri);
-
-
         }
 
         getContext().getContentResolver().notifyChange(uri,null);
@@ -68,8 +66,31 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
+        final SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        int match = sUriMatcher.match(uri);
+        Cursor  retCursor =null;
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        switch (match){
+            case FAVORITE_MOVIES_WITH_ID:
+                String id = uri.getPathSegments().get(1);
+                String mSelection = "movieID=?";
+                String[] mSelectionArgs = new String[]{id};
+                retCursor = db.query(FavoritesContract.FavoritesEntry.TABLE_NAME, projection,mSelection,mSelectionArgs,null,null,sortOrder);
+
+                break;
+            case FAVORITE_MOVIES:
+                retCursor = db.query(FavoritesContract.FavoritesEntry.TABLE_NAME, projection,selection,selectionArgs,null, null, sortOrder);
+                break;
+
+            default:
+                throw new UnsupportedOperationException("unknown uri: " + uri);
+        }
+
+        retCursor.setNotificationUri(getContext().getContentResolver(),uri);
+
+        return retCursor;
+
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
 
 

@@ -11,4 +11,10 @@
         android:orderInCategory="1"
         android:title="@string/sortTopRated"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_sortFav"
+        android:orderInCategory="1"
+        android:title="@string/sortFavorites"
+        app:showAsAction="never"/>
+
 </menu>

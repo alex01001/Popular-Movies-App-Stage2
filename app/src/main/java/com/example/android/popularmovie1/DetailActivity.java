@@ -1,15 +1,20 @@
 package com.example.android.popularmovie1;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,6 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.popularmovie1.data.FavoritesContract;
 import com.example.android.popularmovie1.data.FavoritesDBHelper;
 import com.squareup.picasso.Picasso;
 
@@ -37,16 +43,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity implements TrailersAdapter.TrailerItemClickListener {
+public class DetailActivity extends AppCompatActivity implements TrailersAdapter.TrailerItemClickListener , LoaderManager.LoaderCallbacks<Cursor> {
 
     private ImageView dvThumbnail;
     private TextView dvOriginalTitle;
     private TextView dvReleaseDate;
     private TextView dvRating;
     private TextView dvOverview;
-   // private ListView mReview;
+    // private ListView mReview;
     //private ListView mTrailers;
-   // private TrailersAdapter mTrailersAdapter;
+    // private TrailersAdapter mTrailersAdapter;
 
     private RecyclerView mRecyclerViewTrailers;
     private TrailersAdapter adapterTrailers;
@@ -57,20 +63,25 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
     private ImageButton favButton;
 
+    private static final int FAVORITES_LOADER_ID = 35;
+
+    boolean markedAsFavorite;
+    Movie movie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        dvThumbnail     = (ImageView) findViewById(R.id.iv_thumbnail);
+        dvThumbnail = (ImageView) findViewById(R.id.iv_thumbnail);
         dvOriginalTitle = (TextView) findViewById(R.id.tv_original_title);
-        dvReleaseDate   = (TextView) findViewById(R.id.tv_release_date);
-        dvRating        = (TextView) findViewById(R.id.tv_user_rating);
-        dvOverview      = (TextView) findViewById(R.id.tv_overview);
+        dvReleaseDate = (TextView) findViewById(R.id.tv_release_date);
+        dvRating = (TextView) findViewById(R.id.tv_user_rating);
+        dvOverview = (TextView) findViewById(R.id.tv_overview);
 
         favButton = (ImageButton) findViewById(R.id.btn_favorite);
         favButton.setBackgroundColor(Color.TRANSPARENT);
-       // favButton.setImageAlpha(50);
+        // favButton.setImageAlpha(50);
 
         int backgroundOpacity = 10 * 0x01000000;
 
@@ -81,8 +92,8 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
 
         Intent intent = getIntent();
-        if(intent.hasExtra("movie")){
-            Movie movie = getIntent().getParcelableExtra("movie");
+        if (intent.hasExtra("movie")) {
+            movie = getIntent().getParcelableExtra("movie");
 
             dvOriginalTitle.setText(movie.getTitle());
             dvReleaseDate.setText(movie.getReleaseDate());
@@ -91,15 +102,14 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             URL posterURL = NetworkTools.buildPosterUrl(movie.getPosterPath());
             Picasso.with(getBaseContext()).load(posterURL.toString()).fit().into(dvThumbnail);
 
-            if(getBaseContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            if (getBaseContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 ViewGroup.LayoutParams lp;
                 lp = dvThumbnail.getLayoutParams();
-                lp.width = 185*Resources.getSystem().getDisplayMetrics().heightPixels/(4*270)-16;
-            }
-            else{
+                lp.width = 185 * Resources.getSystem().getDisplayMetrics().heightPixels / (4 * 270) - 16;
+            } else {
                 ViewGroup.LayoutParams lp;
                 lp = dvThumbnail.getLayoutParams();
-                lp.height = 270*Resources.getSystem().getDisplayMetrics().widthPixels/(2*185)-16;
+                lp.height = 270 * Resources.getSystem().getDisplayMetrics().widthPixels / (2 * 185) - 16;
             }
             // loading trailers
             mRecyclerViewTrailers = (RecyclerView) findViewById(R.id.rv_trailersList);
@@ -108,8 +118,8 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             mRecyclerViewTrailers.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
 
 //            if(((MainActivity)getParent()).isOnline()) {
-                URL trailersURL = NetworkTools.buildTrailersUrl(movie.getId().toString());
-                new TrailerQueryTask().execute(trailersURL);
+            URL trailersURL = NetworkTools.buildTrailersUrl(movie.getId().toString());
+            new TrailerQueryTask().execute(trailersURL);
 //            }
 
             // loading reviews
@@ -119,14 +129,17 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             mRecyclerViewReviews.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
 
 //            if(((MainActivity)getParent()).isOnline()) {
-                URL reviewsURL = NetworkTools.buildReviewsUrl(movie.getId().toString());
-                new ReviewsQueryTask().execute(reviewsURL);
+            URL reviewsURL = NetworkTools.buildReviewsUrl(movie.getId().toString());
+            new ReviewsQueryTask().execute(reviewsURL);
 //            }
+
+            // ADD QUERY TO DB and cnaging the button style if necessary
+            markedAsFavorite = false;
+
 
         }
 
     }
-
 
     @Override
     public void onTrailerItemClick(int clickedItemIndex) {
@@ -158,17 +171,17 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
         @Override
         protected void onPostExecute(String s) {
-            if(s==null){
+            if (s == null) {
                 return;
             }
             // parsing the response.
 
             final String OMD_Results = "results";
             final String OMD_ID = "id";
-            final String OMD_Name ="name";
-            final String OMD_Key ="key";
-            final String OMD_Site ="site";
-            final String OMD_Type ="type";
+            final String OMD_Name = "name";
+            final String OMD_Key = "key";
+            final String OMD_Site = "site";
+            final String OMD_Type = "type";
             JSONObject TrailerJson;
             try {
                 TrailerJson = new JSONObject(s);
@@ -190,13 +203,12 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
                 String name;
                 String key;
                 String site;
-  //              String type;
+                //              String type;
                 try {
-                    JSONObject Trailers =TrailerArray.getJSONObject(i);
+                    JSONObject Trailers = TrailerArray.getJSONObject(i);
 
                     site = Trailers.getString(OMD_Site);
                     if (site.contentEquals("YouTube")) {
-
                         id = Trailers.getString(OMD_ID);
                         key = Trailers.getString(OMD_Key);
                         name = Trailers.getString(OMD_Name);
@@ -206,22 +218,18 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
                         tr.setKey(key);
                         tr.setName(name);
                         resultStr.add(tr);
-
                     }
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-           // Log.i("scroon", String.valueOf(resultStr.size()));
+            // Log.i("scroon", String.valueOf(resultStr.size()));
 
             if (resultStr != null) {
                 adapterTrailers.setMovieData(resultStr);
-
             }
         }
     }
-
 
 
     public class ReviewsQueryTask extends AsyncTask<URL, Void, String> {
@@ -245,15 +253,15 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
         @Override
         protected void onPostExecute(String s) {
-            if(s==null){
+            if (s == null) {
                 return;
             }
             // parsing the response.
             final String OMD_Results = "results";
             final String OMD_ID = "id";
-            final String OMD_Author ="author";
-            final String OMD_Content ="content";
-            final String OMD_URL ="url";
+            final String OMD_Author = "author";
+            final String OMD_Content = "content";
+            final String OMD_URL = "url";
 
             JSONObject reviewsJson;
             try {
@@ -278,7 +286,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
                 String url;
                 //              String type;
                 try {
-                    JSONObject reviews =reviewsArray.getJSONObject(i);
+                    JSONObject reviews = reviewsArray.getJSONObject(i);
 
                     author = reviews.getString(OMD_Author);
                     id = reviews.getString(OMD_ID);
@@ -292,8 +300,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
                     rev.setUrl(url);
                     resultStr.add(rev);
 
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -306,12 +313,90 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         }
     }
 
-    public void onClickFavorite(View view){
+    public void onClickFavorite(View view) {
         Toast toast = Toast.makeText(getApplicationContext(), "Your toast message.",
                 Toast.LENGTH_SHORT);
         toast.show();
-        favButton.setImageResource(R.drawable.star_filled);
+        if (markedAsFavorite) {
+            // remove from favorites
+            favButton.setImageResource(R.drawable.star_empty);
+        } else {
+            // add to favorites
+            ContentValues contentValues = new ContentValues();
 
+            contentValues.put(FavoritesContract.FavoritesEntry.COLUMN_MOVIE_ID, movie.getId());
+            Uri uri = getContentResolver().insert(FavoritesContract.FavoritesEntry.CONTENT_URI, contentValues);
+
+            favButton.setImageResource(R.drawable.star_filled);
+        }
+
+        finish();
+    }
+
+
+    public void checkMovieIsInFavorites(Movie movie){
+        Log.i("scroon ", " checking movie in fav");
+        String searchResults = null;
+        Bundle queryBundle = new Bundle();
+        queryBundle.putString("query", String.valueOf(movie.getId()));
+
+        LoaderManager loaderManager = getSupportLoaderManager();
+        Loader<String> queryLoader = loaderManager.getLoader(FAVORITES_LOADER_ID);
+
+        if (queryLoader == null) {
+            Log.i("scroon null", "null");
+            loaderManager.initLoader(FAVORITES_LOADER_ID, queryBundle, this);
+        } else {
+            Log.i("scroon not", "null");
+            loaderManager.restartLoader(FAVORITES_LOADER_ID, queryBundle, this);
+        }
+
+
+
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, final Bundle bundle) {
+
+        return new AsyncTaskLoader<Cursor>(this) {
+            @Override
+            protected void onStartLoading() {
+                if(bundle==null){
+                    return;
+                }
+                forceLoad();
+            }
+
+            @Override
+            public Cursor loadInBackground() {
+
+                String movieID = bundle.getString("query");
+                if(movieID!=null & !movieID.isEmpty()) {
+                    String[] mID = new String[]{movieID};
+//                    String[] mID = new String[]{movieID};
+
+
+                    Cursor cursor = getContentResolver().query(FavoritesContract.FavoritesEntry.CONTENT_URI,
+                            null,
+                            null,
+                            null,
+                            null);
+
+                }
+                return null;
+            }
+
+
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
 
     }
 }
