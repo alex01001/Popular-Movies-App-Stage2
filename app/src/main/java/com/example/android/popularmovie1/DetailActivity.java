@@ -135,7 +135,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
             // ADD QUERY TO DB and cnaging the button style if necessary
             markedAsFavorite = false;
-
+            checkMovieIsInFavorites(movie);
 
         }
 
@@ -314,20 +314,36 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
     }
 
     public void onClickFavorite(View view) {
-        Toast toast = Toast.makeText(getApplicationContext(), "Your toast message.",
-                Toast.LENGTH_SHORT);
-        toast.show();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FavoritesContract.FavoritesEntry.COLUMN_MOVIE_ID, movie.getId());
+
         if (markedAsFavorite) {
             // remove from favorites
+
+            String[] mID = new String[]{movie.getId().toString()};
+            String mSelection = "movieID=?";
+
+            Uri uri = FavoritesContract.FavoritesEntry.CONTENT_URI;
+            uri = uri.buildUpon().appendPath(movie.getId().toString()).build();
+
+            int n = getContentResolver().delete(uri,null,null);
+        //    getContentResolver().delete(uri, null, null);
             favButton.setImageResource(R.drawable.star_empty);
+            markedAsFavorite = false;
+            Toast toast = Toast.makeText(getApplicationContext(), "Removed from favorites.",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
+
         } else {
             // add to favorites
-            ContentValues contentValues = new ContentValues();
-
-            contentValues.put(FavoritesContract.FavoritesEntry.COLUMN_MOVIE_ID, movie.getId());
             Uri uri = getContentResolver().insert(FavoritesContract.FavoritesEntry.CONTENT_URI, contentValues);
-
             favButton.setImageResource(R.drawable.star_filled);
+            markedAsFavorite = true;
+            Toast toast = Toast.makeText(getApplicationContext(), "Added to favorites.",
+                    Toast.LENGTH_SHORT);
+            toast.show();
         }
 
         finish();
@@ -373,14 +389,23 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
                 String movieID = bundle.getString("query");
                 if(movieID!=null & !movieID.isEmpty()) {
                     String[] mID = new String[]{movieID};
-//                    String[] mID = new String[]{movieID};
+                    String mSelection = "movieID=?";
 
 
                     Cursor cursor = getContentResolver().query(FavoritesContract.FavoritesEntry.CONTENT_URI,
                             null,
-                            null,
-                            null,
+                            mSelection,
+                            mID,
                             null);
+                    Log.i("Croon count", String.valueOf(cursor.getCount()));
+                    while(cursor.moveToNext()){
+                        Log.i("Croon sel", cursor.getString(0));
+                    }
+                    if(cursor.getCount()==0){
+                        return null;
+                    }else {
+                        return cursor;
+                    }
 
                 }
                 return null;
@@ -392,7 +417,11 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if(data !=null){
+            markedAsFavorite = true;
+            favButton.setImageResource(R.drawable.star_filled);
 
+        }
     }
 
     @Override

@@ -21,7 +21,7 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
 
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(FavoritesContract.AUTHORITY,FavoritesContract.PATH_FAVORITES,FAVORITE_MOVIES);
-        uriMatcher.addURI(FavoritesContract.AUTHORITY,FavoritesContract.PATH_FAVORITES + "/#",FAVORITE_MOVIES);
+        uriMatcher.addURI(FavoritesContract.AUTHORITY,FavoritesContract.PATH_FAVORITES + "/#",FAVORITE_MOVIES_WITH_ID);
 
         return uriMatcher;
     }
@@ -97,7 +97,24 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        final SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        int match = sUriMatcher.match(uri);
+        int moviesDeleted;
+
+        switch (match) {
+            case FAVORITE_MOVIES_WITH_ID:
+                String id = uri.getPathSegments().get(1);
+                moviesDeleted = db.delete(FavoritesContract.FavoritesEntry.TABLE_NAME, "movieID=?", new String[]{id});
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        if (moviesDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return moviesDeleted;
     }
 
 
