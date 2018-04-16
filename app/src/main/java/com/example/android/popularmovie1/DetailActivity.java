@@ -60,6 +60,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
     private RecyclerView mRecyclerViewReviews;
     private ReviewsAdapter adapterReviews;
     private SQLiteDatabase fDB;
+ //   private ImageView iv;
 
     private ImageButton favButton;
 
@@ -82,8 +83,10 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         favButton = (ImageButton) findViewById(R.id.btn_favorite);
         favButton.setBackgroundColor(Color.TRANSPARENT);
         // favButton.setImageAlpha(50);
-
-        int backgroundOpacity = 10 * 0x01000000;
+      //  iv = (ImageView) findViewById(R.id.iv_favorite);
+//set the listener
+    //    iv.setOnClickListener(this);
+        int backgroundOpacity = 1 * 0x01000000;
 
         favButton.setBackgroundColor(backgroundOpacity + 0xff0000);
 
@@ -150,6 +153,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         startActivity(intent);
     }
 
+
     public class TrailerQueryTask extends AsyncTask<URL, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -181,7 +185,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             final String OMD_Name = "name";
             final String OMD_Key = "key";
             final String OMD_Site = "site";
-            final String OMD_Type = "type";
+ //           final String OMD_Type = "type";
             JSONObject TrailerJson;
             try {
                 TrailerJson = new JSONObject(s);
@@ -346,7 +350,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             toast.show();
         }
 
-        finish();
+   //     finish();
     }
 
 

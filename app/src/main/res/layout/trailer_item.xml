@@ -6,14 +6,15 @@
 
     <ImageView
         android:id="@+id/trailer_image"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/trailer_name"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/cardview_dark_background"
         android:padding="5dp"
         android:gravity="bottom|left"
         android:textColor="#CDDC39"

@@ -49,6 +49,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textSize="16sp" />
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:padding="0dp"
+                android:src="@drawable/star_empty"
+                android:background="?android:selectableItemBackground"
+                android:onClick="onClickFavorite"/>
 
             <TextView
                 android:id="@+id/tv_overview"

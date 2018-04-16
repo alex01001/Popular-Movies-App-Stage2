@@ -55,11 +55,23 @@
                 android:scaleType="fitCenter"
                 android:padding="0dp"
                 android:src="@drawable/star_empty"
+                android:background="?android:selectableItemBackground"
                 android:onClick="onClickFavorite"/>
 
 
         </LinearLayout>
     </LinearLayout>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
 
         <TextView
             android:id="@+id/tv_overview"
@@ -67,17 +79,42 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textSize="18sp" />
+    </android.support.v7.widget.CardView>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="T R A I L E R S"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_trailersList"
             android:visibility="visible"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_reviewsList"

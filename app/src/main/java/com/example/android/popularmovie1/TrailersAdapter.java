@@ -51,6 +51,24 @@ public class TrailersAdapter extends RecyclerView.Adapter <TrailersAdapter.MyVie
         Picasso.with(context).load(thumbnail_url).into(holder.trailerImg);
 
         holder.trailerName.setText(current.getName());
+        if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            ViewGroup.LayoutParams lp;
+            lp = holder.trailerImg.getLayoutParams();
+            lp.height = Resources.getSystem().getDisplayMetrics().heightPixels/4;
+            lp.width = 3*Resources.getSystem().getDisplayMetrics().widthPixels/4;
+
+            lp = holder.trailerName.getLayoutParams();
+            lp.width = 3*Resources.getSystem().getDisplayMetrics().widthPixels/4;
+
+
+        }
+        if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            ViewGroup.LayoutParams lp;
+            lp = holder.trailerImg.getLayoutParams();
+            lp.width = Resources.getSystem().getDisplayMetrics().widthPixels/2;
+
+        }
+
 
 //        View v = convertView;
 //        Holder hold = null;
