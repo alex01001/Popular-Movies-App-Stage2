@@ -4,4 +4,8 @@
     <string name="sortTopRated">Top Rated Movies</string>
     <string name="sortFavorites">Favorite Movies</string>
     <string name="errorMessage">Failed to load. Please, check your Internet connection and try again. </string>
+    <string name="trailersCaption">T R A I L E R S</string>
+    <string name="overviewCaption">O V E R V I E W</string>
+    <string name="reviewsCaption">R E V I E W S</string>
+    <string name="releaseDateCaption">Release Date:</string>
 </resources>

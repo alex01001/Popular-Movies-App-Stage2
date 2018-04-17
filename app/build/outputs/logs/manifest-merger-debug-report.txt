@@ -1,0 +1,198 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+MERGED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\2c3ac49dec411e6d2a923635d1b7b616\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:17:1-30:12
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+	package
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:3:5-48
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:1-29:12
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:6:22-76
+application
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:7:5-27:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\2c3ac49dec411e6d2a923635d1b7b616\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\2c3ac49dec411e6d2a923635d1b7b616\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:24:5-28:19
+	android:supportsRtl
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:10:9-41
+	android:roundIcon
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:11:9-54
+	android:icon
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:9:9-43
+	android:allowBackup
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:13:9-40
+activity#com.example.android.popularmovie1.MainActivity
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:14:9-20:20
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:14:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:15:13-19:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:16:17-69
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:18:17-77
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:18:27-74
+activity#com.example.android.popularmovie1.DetailActivity
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:21:9-61
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:21:19-49
+provider#com.example.android.popularmovie1.data.FavoriteMoviesContentProvider
+ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:22:9-25:39
+	android:authorities
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:23:13-68
+	android:exported
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml:24:13-96
+uses-sdk
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\2c3ac49dec411e6d2a923635d1b7b616\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\2c3ac49dec411e6d2a923635d1b7b616\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\GaninA\Documents\GitHub\PopularMovie2\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\fb9699fd57b55d6b0a46eab6e8da822d\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\ca8ce6ee337823fc062d0f0deb302485\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\def48bb1662b558639dc00b1ef46d3b1\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\513bacbcb538871b29c354035b11f097\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\7701c0c72b00367ee80fb6ead2d477ba\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\802668daa2dd20e94321cbfdc50e064f\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\a82854b029a90a461fd6d82d2d4e3702\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\0ad6bd5240ed8ffe6819cd2fb7afafd3\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\a879af2db205642a966795b32390b107\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\972b08c56709b003aeec0ba3031f8147\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\abbca42995c3f2329ab3df7cf64cf882\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9c6ffa7c58654c8bd492fa17a0e68646\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.1.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\b4079b9da2b58e46c3611ac8eefe1cbf\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\GaninA\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\33d60eb2d3eaf15dd7eed47ae5cce640\AndroidManifest.xml:26:13-58

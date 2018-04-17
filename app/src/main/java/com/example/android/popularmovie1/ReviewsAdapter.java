@@ -44,6 +44,9 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewsAdapter.MyViewH
         Review current = data.get(position);
 //        String thumbnail_url = "http://img.youtube.com/vi/" + current.getKey()+"/0.jpg";
 //        Picasso.with(context).load(thumbnail_url).into(holder.ReviewImg);
+        if(position == 0){
+            holder.reviewsCaption.setVisibility(View.VISIBLE);
+        }
         holder.reviewAuthor.setText(current.getAuthor()+":");
         holder.reviewContent.setText(current.getContent());
 
@@ -71,6 +74,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewsAdapter.MyViewH
 
         private TextView  reviewAuthor;
         private TextView reviewContent;
+        private TextView reviewsCaption;
 
 //        @Override
 //        public void onClick(View view) {
@@ -83,7 +87,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewsAdapter.MyViewH
             super(itemView);
             reviewAuthor  = (TextView) itemView.findViewById(R.id.review_author);
             reviewContent = (TextView)  itemView.findViewById(R.id.review_content);
-            //itemView.setOnClickListener(this);
+            reviewsCaption  = (TextView) itemView.findViewById(R.id.reviews_caption);
         }
     }
 }

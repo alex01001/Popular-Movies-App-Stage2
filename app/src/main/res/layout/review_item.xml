@@ -16,6 +16,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
+    <TextView
+        android:id="@+id/reviews_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:text="@string/reviewsCaption" />
 
     <TextView
         android:id="@+id/review_author"

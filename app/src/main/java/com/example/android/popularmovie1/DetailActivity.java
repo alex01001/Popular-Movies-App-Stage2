@@ -101,18 +101,23 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             dvOriginalTitle.setText(movie.getTitle());
             dvReleaseDate.setText(movie.getReleaseDate());
             dvOverview.setText(movie.getOverview());
-            dvRating.setText(movie.getVoteCount().toString());
+            dvRating.setText("Rating: "+movie.getVoteAverage().toString());
             URL posterURL = NetworkTools.buildPosterUrl(movie.getPosterPath());
             Picasso.with(getBaseContext()).load(posterURL.toString()).fit().into(dvThumbnail);
+            ViewGroup.LayoutParams lp;
+            lp = dvThumbnail.getLayoutParams();
+            lp.width = 16;
 
-            if (getBaseContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                ViewGroup.LayoutParams lp;
+            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            //    ViewGroup.LayoutParams lp;
                 lp = dvThumbnail.getLayoutParams();
-                lp.width = 185 * Resources.getSystem().getDisplayMetrics().heightPixels / (4 * 270) - 16;
+//                lp.width = 185 * Resources.getSystem().getDisplayMetrics().heightPixels / (4 * 270) - 16;
+                lp.width = 16;
             } else {
-                ViewGroup.LayoutParams lp;
+   //             ViewGroup.LayoutParams lp;
                 lp = dvThumbnail.getLayoutParams();
                 lp.height = 270 * Resources.getSystem().getDisplayMetrics().widthPixels / (2 * 185) - 16;
+                lp.width = 16;
             }
             // loading trailers
             mRecyclerViewTrailers = (RecyclerView) findViewById(R.id.rv_trailersList);

@@ -3,6 +3,7 @@ package com.example.android.popularmovie1;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,9 +58,14 @@ public class TrailersAdapter extends RecyclerView.Adapter <TrailersAdapter.MyVie
             lp.height = Resources.getSystem().getDisplayMetrics().heightPixels/4;
             lp.width = 3*Resources.getSystem().getDisplayMetrics().widthPixels/4;
 
+            lp = holder.itemView.getLayoutParams();
+            lp.width = 3*Resources.getSystem().getDisplayMetrics().widthPixels/4;
+
             lp = holder.trailerName.getLayoutParams();
             lp.width = 3*Resources.getSystem().getDisplayMetrics().widthPixels/4;
 
+            int backgroundOpacity = 150 * 0x01000000;
+            holder.trailerName.setBackgroundColor(backgroundOpacity + 0x00695C);
 
         }
         if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){

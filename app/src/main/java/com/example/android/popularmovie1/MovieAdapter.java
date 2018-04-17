@@ -27,7 +27,7 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MyViewHolde
     private Context context;
 
     public interface MovieItemClickListener {
-        void onMovieItemClick(int ClickedItemIndex);
+        void onMovieItemClick(int ClickedItemIndex,ImageView posterImg);
     }
 
     public MovieAdapter (Context tContext, MovieItemClickListener listener){
@@ -47,8 +47,8 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MyViewHolde
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Movie current = data.get(position);
         URL posterURL = NetworkTools.buildPosterUrl(current.getPosterPath());
-        Picasso.with(context).load(posterURL.toString()).resize(185,277).centerCrop().into(holder.posterImg);
-//        Picasso.with(context).load(posterURL.toString()).fit().into(holder.posterImg);
+//        Picasso.with(context).load(posterURL.toString()).resize(185,277).centerCrop().into(holder.posterImg);
+        Picasso.with(context).load(posterURL.toString()).fit().into(holder.posterImg);
         if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             ViewGroup.LayoutParams lp;
             lp = holder.posterImg.getLayoutParams();
@@ -81,7 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MyViewHolde
         @Override
         public void onClick(View view) {
             int clickedPosition = getAdapterPosition();
-            onClickListener.onMovieItemClick(clickedPosition);
+            onClickListener.onMovieItemClick(clickedPosition,posterImg);
         }
 
 

@@ -1,5 +1,7 @@
 package com.example.android.popularmovie1;
 
+import android.app.Activity;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.ContentValues;
@@ -25,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,12 +118,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
     private void makeSearchQuery() {
-        Log.i("scroon sm", String.valueOf(sortMethod));
-
         if(sortMethod == 2){
             // load from DB
             if (isOnline()) {
-                Log.i("scroon LOAD FROM DB", "");
                 String searchResults = null;
                 Bundle queryBundle = new Bundle();
                 queryBundle.putString("query", "LOAD_FROM_DB");
@@ -128,36 +128,26 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                 Loader<String> queryLoader = loaderManager.getLoader(FAVORITES_LOADER_ID);
 
                 if (queryLoader == null) {
-                    Log.i("scroon null", "null");
                     loaderManager.initLoader(FAVORITES_LOADER_ID, queryBundle, this);
                 } else {
-                    Log.i("scroon not", "null");
                     loaderManager.restartLoader(FAVORITES_LOADER_ID, queryBundle, this);
                 }
-
             }
         }
         else if(sortMethod==0 || sortMethod==1) {
 
             if (isOnline()) {
                 URL MovieUrl = NetworkTools.buildUrl(sortMethod);
-                Log.i("scroon1", MovieUrl.toString());
                 String searchResults = null;
-                //new MovieQueryTask().execute(MovieUrl);
                 Bundle queryBundle = new Bundle();
                 queryBundle.putString("query", MovieUrl.toString());
                 LoaderManager loaderManager = getSupportLoaderManager();
                 Loader<String> queryLoader = loaderManager.getLoader(FAVORITES_LOADER_ID);
 
                 if(queryLoader == null){
-                    Log.i("scroon null", "null");
                     loaderManager.initLoader(FAVORITES_LOADER_ID, queryBundle, this);
-//                    loaderManager.initLoader(0, null, this).forceLoad();
                 } else{
-                    Log.i("scroon not", "null");
                     loaderManager.restartLoader(FAVORITES_LOADER_ID, queryBundle, this);
-//                    loaderManager.initLoader(FAVORITES_LOADER_ID, queryBundle, this);
-
                 }
 
             } else {
@@ -184,12 +174,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
     @Override
-    public void onMovieItemClick(int clickedItemIndex) {
+    public void onMovieItemClick(int clickedItemIndex, ImageView posterImg) {
         Context context = MainActivity.this;
         Class detActivity = DetailActivity.class;
         Intent intent = new Intent(context,detActivity);
+        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,(View) posterImg, "sharedPoster");
+     //   ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(context,posterImg, "sharedPoster");
         intent.putExtra("movie", movieList.get(clickedItemIndex));
-        startActivity(intent);
+        startActivity(intent,optionsCompat.toBundle());
     }
 
     @Override
