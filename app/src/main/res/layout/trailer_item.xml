@@ -14,10 +14,10 @@
         android:id="@+id/trailer_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColorHighlight="@color/cardview_dark_background"
-        android:padding="5dp"
         android:gravity="bottom|left"
+        android:padding="5dp"
         android:textColor="#CDDC39"
+        android:textColorHighlight="@color/cardview_dark_background"
         android:textSize="16sp"
         android:textStyle="bold" />
 

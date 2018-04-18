@@ -44,70 +44,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieItemClickListener, LoaderManager.LoaderCallbacks<String> {
 
-    private RecyclerView mRecyclerView;
-    private MovieAdapter adapter;
-    private byte outputArraysLength;
-//    boolean sortPopular; // Sort Mode. True = Popular movies, False = top rated movies
     int sortMethod; // 0 = Popular Movies, 1 = top rated, 2 - favorites form phone's DB.
-
     public ArrayList<Movie> movieList;
-    TextView errorMessageTextView;
-    ProgressBar mLoadingIndicator;
 
+    @BindView(R.id.tv_error_message_diaplay) TextView errorMessageTextView;
+    @BindView(R.id.pb_loading_indicator) ProgressBar mLoadingIndicator;
+    @BindView(R.id.rv_postersGrid) RecyclerView mRecyclerView;
+
+    private MovieAdapter adapter;
     private static final int FAVORITES_LOADER_ID = 35;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        errorMessageTextView = (TextView) findViewById(R.id.tv_error_message_diaplay);
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_postersGrid);
-//        sortPopular = true;
+        ButterKnife.bind(this);
         sortMethod = 0;
-        outputArraysLength = 4;
 
         adapter = new MovieAdapter(getBaseContext(), this);
         mRecyclerView.setAdapter(adapter);
         if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 4));
-
         }
         else{
             mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
-
         }
-        // avoid re loading the movie list from the internet on device rotate
+        // avoid reloading the movie list from the internet on device rotate
         if(savedInstanceState!=null){
             movieList = savedInstanceState.getParcelableArrayList("MOVIE_LIST");
             adapter.setMovieData(movieList);
-           // Log.d("sss2", String.valueOf(movieList.size()));
             showPosterGrid();
         }
         else{
             makeSearchQuery();
         }
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList("MOVIE_LIST", movieList);
-        //Log.i("sss", String.valueOf(movieList.size()));
-
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-//        outState.putParcelableArrayList("MOVIE_LIST", movieList);
-//        Log.i("sss", "ddsssss");
-//        Log.i("sss", String.valueOf(movieList.size()));
     }
 
     // check if we are connected to a network
@@ -179,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         Class detActivity = DetailActivity.class;
         Intent intent = new Intent(context,detActivity);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,(View) posterImg, "sharedPoster");
-     //   ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(context,posterImg, "sharedPoster");
         intent.putExtra("movie", movieList.get(clickedItemIndex));
         startActivity(intent,optionsCompat.toBundle());
     }
@@ -194,10 +179,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     public boolean onOptionsItemSelected(MenuItem item) {
         int selectedMenuItem = item.getItemId();
         if (selectedMenuItem == R.id.action_sortMP) {
-            //sortPopular=true;
             sortMethod = 0;
         }else if (selectedMenuItem == R.id.action_sortTR) {
-            //sortPopular = false;
             sortMethod = 1;
         }else if (selectedMenuItem == R.id.action_sortFav) {
             sortMethod = 2;
@@ -205,7 +188,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         makeSearchQuery();
         return super.onOptionsItemSelected(item);
     }
-//  LOADER METHODS
+
+    //  LOADER METHODS
     @Override
     public Loader<String> onCreateLoader(int i, final Bundle bundle) {
         return new AsyncTaskLoader<String>(this) {
@@ -215,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                     return;
                 }
                 showLoadingIndicator();
-                Log.i("scroon ", "start loading");
                 forceLoad();
             }
 
@@ -234,11 +217,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                     String JSONresponse = "{\"page\":1,\"total_results\":19930,\"total_pages\":997,\"results\":[";
                     while(cursor.moveToNext()){
                         movieID = cursor.getString(cursor.getColumnIndex(FavoritesContract.FavoritesEntry.COLUMN_MOVIE_ID));
-                        Log.i("scroon DB", movieID);
                         try{
                             URL movieUrl = NetworkTools.buildMovieUrl(movieID);
                             String movieJSON = NetworkTools.getResponseFromHttpUrl(movieUrl);
-                            Log.i("scroon movie JSON", movieJSON);
                             JSONresponse = JSONresponse + movieJSON + ",";
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -248,19 +229,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                     // remove last comma form the string
                     JSONresponse = JSONresponse.substring(0,JSONresponse.length()-1);
                     JSONresponse += "]}";
-                    Log.i("scroon movies JSON", JSONresponse);
-
-
                     cursor.close();
 
                     return JSONresponse;
                 }
                 else {
-                    Log.i("scroon 3", queryURLString);
                     if (queryURLString == null || TextUtils.isEmpty(queryURLString)) {
                         return null;
                     }
-                    //String searchResults = null;
                     try {
                         URL searchUrl = new URL(queryURLString);
                         return NetworkTools.getResponseFromHttpUrl(searchUrl);
@@ -269,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                         return null;
                     }
                 }
-                //return null;
             }
         };
     }
@@ -280,10 +255,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
             showErrorMessage();
             return;
         }
-        Log.i("scroon", s);
         // parsing the response.
         movieList = new ArrayList<Movie>();
-        outputArraysLength = 0;
 
         if(s!=null && !s.equals("")) {
             JSONObject movieJSON;
@@ -294,7 +267,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                 e.printStackTrace();
                 return;
             }
-            Log.i("scroon", "here");
             try {
                 movies = movieJSON.getJSONArray("results");
             } catch (JSONException e) {
@@ -350,89 +322,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void onLoaderReset(Loader<String> loader) {
-        Log.i("scroon sm", "restart load");
 
     }
-    // ASYNC TASKS METHODS
-    public class MovieQueryTask extends AsyncTask<URL, Void, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //showLoadingIndicator();
-        }
 
-        @Override
-        protected String doInBackground(URL... urls) {
-            URL searchUrl = urls[0];
-            String searchResults = null;
-//            try {
-//                searchResults = NetworkTools.getResponseFromHttpUrl(searchUrl);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            return searchResults;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            if(s==null){
-                showErrorMessage();
-                return;
-            }
-            // parsing the response.
-            movieList = new ArrayList<Movie>();
-            outputArraysLength = 0;
-
-            if(s!=null && !s.equals("")) {
-                JSONObject movieJSON;
-                JSONArray movies;
-                try {
-                    movieJSON = new JSONObject(s);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                try {
-                    movies = movieJSON.getJSONArray("results");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                }
-
-                for (int i=0; i<movies.length(); i++) {
-                    try {
-                        JSONObject movieItem =  movies.getJSONObject(i);
-                        Movie movie = new Movie();
-                        movie.setVoteCount(movieItem.getInt("vote_count"));
-                        movie.setId(movieItem.getInt("id"));
-                        movie.setVideo(movieItem.getBoolean("video"));
-                        movie.setVoteAverage(movieItem.getDouble("vote_average"));
-                        movie.setTitle(movieItem.getString("title"));
-                        movie.setPopularity(movieItem.getDouble("popularity"));
-                        movie.setPosterPath(movieItem.getString("poster_path"));
-                        movie.setOriginalLanguage(movieItem.getString("original_language"));
-                        movie.setOriginalTitle(movieItem.getString("original_title"));
-
-                        List<Integer> genIDs = new ArrayList<Integer>();
-                        JSONArray genre_ids = movieItem.getJSONArray("genre_ids");
-                        for (int j=0; j<genre_ids.length(); j++) {
-                            genIDs.add(genre_ids.getInt(j));
-                        }
-                        movie.setGenreIds(genIDs);
-                        movie.setBackdropPath(movieItem.getString("backdrop_path"));
-                        movie.setAdult(movieItem.getBoolean("adult"));
-                        movie.setOverview(movieItem.getString("overview"));
-                        movie.setPosterPath(movieItem.getString("poster_path"));
-                        movie.setReleaseDate(movieItem.getString("release_date"));
-                        movieList.add(movie);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                adapter.setMovieData(movieList);
-                showPosterGrid();
-            }
-        }
-    }
 }

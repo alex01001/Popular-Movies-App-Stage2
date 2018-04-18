@@ -14,18 +14,15 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
 
     public static final int FAVORITE_MOVIES = 100;
     public static final int FAVORITE_MOVIES_WITH_ID = 101;
-
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
     public static UriMatcher buildUriMatcher(){
-
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(FavoritesContract.AUTHORITY,FavoritesContract.PATH_FAVORITES,FAVORITE_MOVIES);
         uriMatcher.addURI(FavoritesContract.AUTHORITY,FavoritesContract.PATH_FAVORITES + "/#",FAVORITE_MOVIES_WITH_ID);
 
         return uriMatcher;
     }
-
 
     private FavoritesDBHelper mDbHelper;
 
@@ -89,8 +86,6 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
         retCursor.setNotificationUri(getContext().getContentResolver(),uri);
 
         return retCursor;
-
-        //throw new UnsupportedOperationException("Not yet implemented");
     }
 
 
@@ -113,7 +108,6 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
         if (moviesDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
-
         return moviesDeleted;
     }
 
@@ -122,15 +116,14 @@ public class FavoriteMoviesContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        throw new UnsupportedOperationException("Not implemented");
     }
 
 
     @Override
     public String getType(@NonNull Uri uri) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        throw new UnsupportedOperationException("Not implemented");
     }
-
 
 }

@@ -17,19 +17,13 @@ import java.util.List;
 
 public class ReviewsAdapter extends RecyclerView.Adapter <ReviewsAdapter.MyViewHolder>{
 
-   // final private ReviewItemClickListener onClickListener;
     private LayoutInflater inflater;
     List<Review> data = Collections.emptyList();
     private Context context;
 
-//    public interface ReviewItemClickListener {
-//        void onReviewItemClick(int ClickedItemIndex);
-//    }
-
     public ReviewsAdapter (Context tContext){
         context = tContext;
         inflater = LayoutInflater.from(tContext);
-//        onClickListener = listener;
     }
 
     @Override
@@ -42,8 +36,6 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewsAdapter.MyViewH
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Review current = data.get(position);
-//        String thumbnail_url = "http://img.youtube.com/vi/" + current.getKey()+"/0.jpg";
-//        Picasso.with(context).load(thumbnail_url).into(holder.ReviewImg);
         if(position == 0){
             holder.reviewsCaption.setVisibility(View.VISIBLE);
         }
@@ -62,26 +54,11 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewsAdapter.MyViewH
         return data.size();
     }
 
-    //@Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return data.get(position);
-    }
-
-
     class MyViewHolder extends RecyclerView.ViewHolder{
-            //implements View.OnClickListener{
 
         private TextView  reviewAuthor;
         private TextView reviewContent;
         private TextView reviewsCaption;
-
-//        @Override
-//        public void onClick(View view) {
-//            int clickedPosition = getAdapterPosition();
-//            onClickListener.onReviewItemClick(clickedPosition);
-//        }
-
 
         public MyViewHolder(View itemView) {
             super(itemView);

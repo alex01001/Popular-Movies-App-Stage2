@@ -15,6 +15,7 @@ public class NetworkTools {
     /**
      * Builds the URL
      */
+    private static final String API_KEY = BuildConfig.API_KEY;
     public static URL buildUrl(int sortPopular) {
 
         if (sortPopular==2){
@@ -23,7 +24,7 @@ public class NetworkTools {
 
         Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
                 .appendPath(sortPopular==0 ? Constants.POPULAR_MOVIES_URL:Constants.TOP_MOVIES_URL)
-                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
+                .appendQueryParameter(Constants.API_PARAM, API_KEY)
                 .build();
 
         URL url = null;
@@ -54,7 +55,7 @@ public class NetworkTools {
     public static URL buildMovieUrl(String movieID) {
         Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
                 .appendEncodedPath(movieID)
-                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
+                .appendQueryParameter(Constants.API_PARAM, API_KEY)
                 .build();
 
         URL url = null;
@@ -72,7 +73,7 @@ public class NetworkTools {
         Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
                 .appendEncodedPath(movieID)
                 .appendEncodedPath("videos")
-                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
+                .appendQueryParameter(Constants.API_PARAM, API_KEY)
                 .build();
 
         URL url = null;
@@ -90,7 +91,7 @@ public class NetworkTools {
         Uri builtUri = Uri.parse(Constants.BASE_URL).buildUpon()
                 .appendEncodedPath(movieID)
                 .appendEncodedPath("reviews")
-                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
+                .appendQueryParameter(Constants.API_PARAM, API_KEY)
                 .build();
 
         URL url = null;
